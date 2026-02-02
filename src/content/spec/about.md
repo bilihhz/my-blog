@@ -1,5 +1,5 @@
 # 关于
-本站使用[Fuwari](https://github.com/saicaca/fuwari).搭建
+本站使用[Fuwari](https://github.com/saicaca/fuwari)搭建
 
 ::github{repo="saicaca/fuwari"}
 
