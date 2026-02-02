@@ -153,3 +153,11 @@
 
 
 
+body {
+    
+    background-image:url('https://bing.img.run/uhd.php'); /* 设置背景图片的URL */
+    background-repeat: no-repeat; /* 设置背景图片不重复 */
+    background-attachment: fixed; /* 设置背景图片固定，不随滚动条滚动 */
+    background-size: cover; /* 设置背景图片覆盖整个视口 */
+    background-position: center; /* 设置背景图片的位置为居中 */
+}
