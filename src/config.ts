@@ -32,7 +32,7 @@ export const siteConfig: SiteConfig = {
 	favicon: [
 		// Leave this array empty to use the default favicon
 		 {
-		   src: './assets/images/web.ico',    // Path of the favicon, relative to the /public directory
+		   src: 'https://image2url.com/r2/default/images/1770029495841-b5ff076e-283d-4a78-92a6-d656a18b3381.ico',    // Path of the favicon, relative to the /public directory
 		//   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
 		//   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
 		 }
