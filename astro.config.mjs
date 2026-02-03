@@ -25,7 +25,7 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
 
 import cloudflare from "@astrojs/cloudflare";
-import rehypeFigure from "./src/plugins/rehype-figure.js";
+import rehypeFigure from "./src/plugins/rehype-figure.mjs";
 
 
 // https://astro.build/config
