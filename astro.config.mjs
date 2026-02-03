@@ -26,6 +26,7 @@ import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-cop
 
 import cloudflare from "@astrojs/cloudflare";
 import rehypeFigure from "./src/plugins/rehype-figure.mjs";
+import remarkImageWidth from './src/plugins/remark-image-width.js'
 
 
 // https://astro.build/config
@@ -117,6 +118,7 @@ export default defineConfig({
           remarkDirective,
           remarkSectionize,
           parseDirectiveNode,
+          remarkImageWidth,
       ],
       rehypePlugins: [
           rehypeKatex,
