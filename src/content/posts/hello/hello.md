@@ -12,4 +12,3 @@ lang: ''
 hello 
 test
 ![png test ](./web.png)
-![w-50%](./web.png)
