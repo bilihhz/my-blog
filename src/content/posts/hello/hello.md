@@ -2,7 +2,7 @@
 title: hello (test)
 published: 2026-02-02
 description: 'test'
-image: ''
+image: './web.png'
 tags: [test]
 category: 'test'
 draft: false 
