@@ -25,6 +25,8 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
 
 import cloudflare from "@astrojs/cloudflare";
+import rehypeFigure from "./src/plugins/rehype-figure.js";
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -119,6 +121,7 @@ export default defineConfig({
       rehypePlugins: [
           rehypeKatex,
           rehypeSlug,
+          rehypeFigure,
           [
               rehypeComponents,
               {
