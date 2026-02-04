@@ -27,7 +27,7 @@ import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-cop
 import cloudflare from "@astrojs/cloudflare";
 import rehypeFigure from "./src/plugins/rehype-figure.mjs";
 import remarkImageWidth from './src/plugins/remark-image-width.js'
-
+import rehypeEmailProtection from "./src/plugins/rehype-email-protection.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -124,6 +124,7 @@ export default defineConfig({
           rehypeKatex,
           rehypeSlug,
           rehypeFigure,
+          [rehypeEmailProtection, { method: "base64" }], // 邮箱保护插件，支持 'base64' 或 'rot13'
           [
               rehypeComponents,
               {
