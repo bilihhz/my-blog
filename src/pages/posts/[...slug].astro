@@ -14,6 +14,8 @@ import PostMetadata from "../../components/PostMeta.astro";
 import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 
+import Giscus from "../../components/misc/giscus.astro";
+
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
 	return blogEntries.map((entry) => ({
@@ -107,6 +109,13 @@ const jsonLd = {
             </Markdown>
 
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
+
+            <GiscusComment
+                repo="bilihhz/blog-giscus"
+                repoId="R_kgDORLVzaw"
+                category="Announcements"
+                categoryId="DIC_kwDORLVza84C2CuY"
+            />
 
         </div>
     </div>
