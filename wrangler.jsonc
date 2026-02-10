@@ -1,5 +1,5 @@
 {
   "name": "my-astro-app",
-  "compatibility_date": "2026-02-04", // 更新为你部署当天的日期
+  "compatibility_date": "2026-02-09", // 更新为你部署当天的日期
   "pages_build_output_dir": "./dist"
 }
