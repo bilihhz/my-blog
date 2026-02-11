@@ -54,8 +54,18 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		{
-			name: "分析(Umami)",
+			name: "统计(Umami)",
 			url: "https://cloud.umami.is/share/zwNENJkXsBNXmIuP", // Internal links should not include the base path, as it is automatically added
+			external: true, // Show an external link icon and will open in a new tab
+		},
+		{
+			name: "监控1",
+			url: "https://uptime.hhz114514.qzz.io/", // Internal links should not include the base path, as it is automatically added
+			external: true, // Show an external link icon and will open in a new tab
+		},
+		{
+			name: "监控2",
+			url: "https://stats.uptimerobot.com/Vvl3i7j1N2", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 	],
@@ -69,7 +79,7 @@ export const profileConfig: ProfileConfig = {
 		{
       		name: 'Email',
       		icon: 'fa6-solid:envelope',
-      		url: 'Henry.chenyt@outlook.com',
+      		url: 'hello@hhz114514.qzz.io',
     	},
 		{
       		name: 'bilibili',
