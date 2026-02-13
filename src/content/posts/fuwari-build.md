@@ -18,11 +18,11 @@ lang: ''
 
 ## 正式开始
 首先，fork Fuwari的仓库，随便取名字   
-:: github{repo="saicaca/fuwari"}   
+: : github{repo="saicaca/fuwari"}   
 然后用 git 克隆仓库到本地：git clone 你的仓库链接  
-::: warning
+: : : warning
 不要像我当时傻乎乎的直接下载源码，这样无法使用git
-:::
+: : :
 打开nodes.的cmd，安装pnpm：npm install -g pnpm  
 然后cd到你的项目的根目录，安装依赖：pnpm install  
 至此，可以开始更改fuwari的配置了  
@@ -41,7 +41,7 @@ lang: ''
 - links：你在其他平台的链接，显示在个性签名下面
 - links：icon：需去[icones.js.org](icones.js.org)寻找，fuwari默认支持fa6-brands, fa6-regular, fa6-solid, material-symbols这几种
 - 然后就没了，附上我的config.ts
-- ```ts title="config.ts"
+- ` ` `ts title="config.ts"
 import type {
 ExpressiveCodeConfig,
 LicenseConfig,
@@ -150,4 +150,4 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 theme: "github-dark",
 };
 
-```
+` ` `
