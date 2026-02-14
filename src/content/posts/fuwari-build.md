@@ -40,7 +40,7 @@ lang: ''
 - `bio`：个性签名
 - `links`：你在其他平台的链接，显示在个性签名下面
 - `links`：`icon`：需去[icones.js.org](icones.js.org)寻找，fuwari默认支持`fa6-brands`, `fa6-regular`, `fa6-solid`, `material-symbols`这几种
-- 然后就没了，附上我的config.ts
+- 然后就没了，附上我的`config.ts`
 ```ts title="config.ts"
 import type {
 	ExpressiveCodeConfig,
