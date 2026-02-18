@@ -161,3 +161,12 @@ body {
     background-size: cover; /* 设置背景图片覆盖整个视口 */
     background-position: center; /* 设置背景图片的位置为居中 */
 }
+
+
+@font-face {
+  font-family: 'ClaudeSans';
+  src: url('/fonts/ClaudeSans.woff2') format('woff2');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}

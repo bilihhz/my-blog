@@ -7,8 +7,8 @@
 
 ::github{repo="bilihhz/my-blog"}
 
-背景为bing每日壁纸，我使用的api：https://bing.img.run/
+背景为bing每日壁纸，我使用的api：https://bing.img.run/   
 
-
+字体为Claude Sans
 
 
