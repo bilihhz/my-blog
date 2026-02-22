@@ -40,7 +40,7 @@ lang: ''
 - `bio`：个性签名
 - `links`：你在其他平台的链接，显示在个性签名下面
 - `links`：`icon`：需去[icones.js.org](https://icones.js.org)寻找，fuwari默认支持`fa6-brands`, `fa6-regular`, `fa6-solid`, `material-symbols`这几种
-- 然后就没了，附上我的`config.ts`
+- 附上我的`config.ts`
 ```ts title="config.ts"
 import type {
 	ExpressiveCodeConfig,
@@ -151,7 +151,22 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 };
 
 ```
-- 那个background不要管他，费案（我代码里其实有好多费案什么的）
+- 那个`background`不要管他，费案（我代码里其实有好多费案什么的）
 
+- 然后更改根目录下的`astro.config.mjs`
+```mjs title=astro.config.mjs
+import ......
+......
+......
 
+// https://astro.build/config
+export default defineConfig({
+  site: "https://你的博客域名/",  //更改这里
+  base: "/",
+  trailingSlash: "always",
+
+```
+
+- 现在，你就可以正式开始写文章了
+- 
 # 未写完
