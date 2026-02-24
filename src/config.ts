@@ -74,6 +74,11 @@ export const navBarConfig: NavBarConfig = {
 			url: "https://zl.hhz114514.qzz.io/", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
+		{
+			name: "指令统计",
+			url: "https://cloud.umami.is/analytics/us/share/jXxNnr88jOOVmHGl/", // Internal links should not include the base path, as it is automatically added
+			external: true, // Show an external link icon and will open in a new tab
+		},
 	],
 };
 
