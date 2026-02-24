@@ -163,6 +163,7 @@ body {
 
 
     font-feature-settings: "cv05",  "ss01";
+    
 }
 
 
@@ -173,3 +174,12 @@ body {
   font-style: normal;
   font-display: swap;
 }
+
+/*@font-face {
+  font-family: 'LXGWWenKai';
+  src: url('/fonts/LXGWWenKai-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}*/
+  
