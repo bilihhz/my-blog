@@ -343,5 +343,6 @@ if (title) {
 
 ## 参考文章：
 1.https://2x.nz/posts/fuwari/  
-2.没写完
+2.https://aulypc1.github.io/posts/website/use_custom_fonts_in_fuwari/
+3.没写完
 # 未写完
