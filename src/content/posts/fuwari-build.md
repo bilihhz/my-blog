@@ -318,7 +318,7 @@ module.exports = {
 ### Umami(其他通过添加js的分析平台同样适用)
 1.打开[Umami](https://umami.is/)官网，注册一个账号  
 2.点添加网站，输入你网站的基本信息，然后得到一个追踪代码，复制   
-3.打开`src/layouts/Layout.astro`,翻到差不多一百多行，在<head>里添加就行（你应该会html吧）   
+3.打开`src/layouts/Layout.astro`,翻到差不多一百多行，在`<head>`里添加就行（你应该会html吧）   
 4.顺便讲一下如果没有副标题如何删除那个`-`
 ```astro title=Layout.astro
 let pageTitle: string;
