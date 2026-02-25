@@ -172,7 +172,7 @@ export default defineConfig({
 
 ## 开始写作
 
-1.转移或删除`src/content/posts`中的示例/md教程文章  
+1.转移或删除`src/content/posts`中的示例md教程文章  
 2.在`Node.js command prompt`中cd到你的项目根目录，执行：`pnpm new-post 文章标题（也是文件名称）`  
 3.然后`src/content/posts`下就会出现一个`你刚输的标题.md`  
 4.用你喜欢的md编辑器打开文件，你应该可以看到这些：
@@ -338,7 +338,7 @@ if (title) {
 
 # 未写完
 
-
+有误请在评论区指出
 
 ## 参考文章：
 1.https://2x.nz/posts/fuwari/  
