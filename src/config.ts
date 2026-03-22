@@ -41,7 +41,7 @@ export const siteConfig: SiteConfig = {
 	favicon: [
 		// Leave this array empty to use the default favicon
 		 {
-		   src: 'https://image2url.com/r2/default/images/1770029495841-b5ff076e-283d-4a78-92a6-d656a18b3381.ico',    // Path of the favicon, relative to the /public directory
+		   src: 'favicon/web.ico',    // Path of the favicon, relative to the /public directory
 		//   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
 		//   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
 		 }
@@ -55,8 +55,18 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		{
-			name: "统计(Umami)",
+			name: "指令",
+			url: "https://zl.hhz114514.qzz.io/", // Internal links should not include the base path, as it is automatically added
+			external: true, // Show an external link icon and will open in a new tab
+		},
+		{
+			name: "统计",
 			url: "https://cloud.umami.is/share/zwNENJkXsBNXmIuP", // Internal links should not include the base path, as it is automatically added
+			external: true, // Show an external link icon and will open in a new tab
+		},
+		{
+			name: "指令统计",
+			url: "https://cloud.umami.is/share/jXxNnr88jOOVmHGl/", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 		{
@@ -69,16 +79,8 @@ export const navBarConfig: NavBarConfig = {
 			url: "https://stats.uptimerobot.com/Vvl3i7j1N2", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
-		{
-			name: "指令",
-			url: "https://zl.hhz114514.qzz.io/", // Internal links should not include the base path, as it is automatically added
-			external: true, // Show an external link icon and will open in a new tab
-		},
-		{
-			name: "指令统计",
-			url: "https://cloud.umami.is/analytics/us/share/jXxNnr88jOOVmHGl/", // Internal links should not include the base path, as it is automatically added
-			external: true, // Show an external link icon and will open in a new tab
-		},
+		
+		
 	],
 };
 
