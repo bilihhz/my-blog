@@ -1,4 +1,4 @@
-import I18nKey from "@i18n/i18nKey";
+import I18nKey from './i18n/i18nKey'
 import type {
 	ExpressiveCodeConfig,
 	LicenseConfig,
@@ -56,11 +56,11 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 
-{
-      name: I18nKey.api, // 使用你刚才定义的 Key
-      url: '/api/',      // 对应 src/pages/api.astro
-      external: false,
-    },
+		{
+      			name: I18nKey.api, // 使用你刚才定义的 Key
+     			url: '/api/',      // 对应 src/pages/api.astro
+      			external: false,
+   		 },
 
 
 		
