@@ -1,3 +1,4 @@
+import I18nKey from "@i18n/i18nKey";
 import type {
 	ExpressiveCodeConfig,
 	LicenseConfig,
@@ -54,6 +55,15 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Home,
 		LinkPreset.Archive,
 		LinkPreset.About,
+
+{
+      name: I18nKey.api, // 使用你刚才定义的 Key
+      url: '/api/',      // 对应 src/pages/api.astro
+      external: false,
+    },
+
+
+		
 		{
 			name: "指令",
 			url: "https://zl.hhz114514.qzz.io/", // Internal links should not include the base path, as it is automatically added
