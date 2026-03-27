@@ -1,5 +1,6 @@
 
 # bing每日壁纸api
+![今日壁纸](https://bing.hhz114514.qzz.io/?f=img&r=UHD)
 ```url
 https://bing.hhz114514.qzz.io/  #返回json信息
 ```  
@@ -23,3 +24,6 @@ https://bing.hhz114514.qzz.io/?f=js&n=3  #当天与前两天的信息
 ```url
 https://bing.hhz114514.qzz.io/?f=txt&d=20260327   #2026/3/27的标题与描述
 ```  
+
+
+
