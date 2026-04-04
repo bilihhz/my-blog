@@ -1,7 +1,7 @@
 
 # bing每日壁纸api
 ![今日壁纸](https://bing.hhz114514.qzz.io/?f=img&r=UHD)
-```url
+```
 https://bing.hhz114514.qzz.io/  #返回json信息
 ```  
 ::github{repo="bilihhz/bing-img"}  
@@ -15,13 +15,13 @@ https://bing.hhz114514.qzz.io/  #返回json信息
 随意组合，值用=，几个选项间用&连接  
 
 ## 示例
-```url
+```
 https://bing.hhz114514.qzz.io/?f=img&r=4k  #UHD图片
 ```  
-```url
+```
 https://bing.hhz114514.qzz.io/?f=js&n=3  #当天与前两天的信息
 ```  
-```url
+```
 https://bing.hhz114514.qzz.io/?f=txt&d=20260327   #2026/3/27的标题与描述
 ```  
 
