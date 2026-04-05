@@ -1,7 +1,5 @@
 {
-  "name": "my-astro-app",
+  "name": "my-blog",
   "compatibility_date": "2026-02-04", // 更新为你部署当天的日期
-  "assets": {
-    "directory": "./dist"
-  }
+  "pages_build_output_dir": "./dist"
 }
