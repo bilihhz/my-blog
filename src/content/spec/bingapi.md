@@ -1,4 +1,6 @@
-
+---
+published: 2026-03-28
+---
 # bing每日壁纸api
 ![今日壁纸](https://bing.hhz114514.qzz.io/?f=img&r=UHD)
 ```
