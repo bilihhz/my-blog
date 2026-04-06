@@ -1,3 +1,4 @@
+import { i18n } from './i18n/translation';
 import I18nKey from './i18n/i18nKey'
 import type {
 	ExpressiveCodeConfig,
@@ -56,15 +57,22 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 
+
 		{
-      			name: I18nKey.api, // 使用你刚才定义的 Key
+      			name: (I18nKey.api), // 使用你刚才定义的 Key
      			url: '/api/',      // 对应 src/pages/api.astro
       			external: false,
    		 },
 
+		 {
+      			name: (I18nKey.friend), // 使用你刚才定义的 Key
+     			url: '/friend/',      // 对应 src/pages/friend.astro
+      			external: false,
+   		 },
+		 
 
 		
-		{
+		/*{
 			name: "指令",
 			url: "https://zl.hhz114514.qzz.io/", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
@@ -89,7 +97,7 @@ export const navBarConfig: NavBarConfig = {
 			url: "https://stats.uptimerobot.com/Vvl3i7j1N2", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
-		
+		*/
 		
 	],
 };

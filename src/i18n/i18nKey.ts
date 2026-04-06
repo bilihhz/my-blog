@@ -4,6 +4,7 @@ enum I18nKey {
 	archive = "archive",
 	search = "search",
 	api = "API",
+	friend = "其他网站&友链",
 
 	tags = "tags",
 	categories = "categories",

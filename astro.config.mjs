@@ -28,6 +28,9 @@ import cloudflare from "@astrojs/cloudflare";
 import rehypeFigure from "./src/plugins/rehype-figure.mjs";
 import remarkImageWidth from './src/plugins/remark-image-width.js'
 import rehypeEmailProtection from "./src/plugins/rehype-email-protection.mjs";
+import { UrlCardComponent } from "./src/plugins/rehype-component-url-card.mjs";
+
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -134,6 +137,7 @@ export default defineConfig({
               {
                   components: {
                       github: GithubCardComponent,
+                      url: UrlCardComponent,
                       note: (x, y) => AdmonitionComponent(x, y, "note"),
                       tip: (x, y) => AdmonitionComponent(x, y, "tip"),
                       important: (x, y) => AdmonitionComponent(x, y, "important"),
