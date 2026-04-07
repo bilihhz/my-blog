@@ -42,12 +42,16 @@ try {
 ---
 
 <!--<div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">-->
-<div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">
+<!-- <div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">
 <div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32">
 <!--<div class="transition bg-[oklch(92%_0.01_var(&#45;&#45;hue))] dark:bg-black rounded-2xl py-8 mt-4 mb-8 flex flex-col items-center justify-center px-6">-->
-<div class="transition bg-[var(--card-bg)] dark:bg-[var(--card-bg)] rounded-2xl py-8 mt-4 mb-8 flex flex-col items-center justify-center px-6">
-<div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6">
-    <div class="transition text-50 text-sm text-center">
+<!-- <div class="transition bg-[var(--card-bg)] dark:bg-[var(--card-bg)] rounded-2xl py-8 mt-4 mb-8 flex flex-col items-center justify-center px-6">
+<div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6">-->
+
+
+<div class="transition border-t border-white/15 my-10 border-dashed mx-4 md:mx-32"></div>
+<div class="card-base w-fit mx-auto rounded-xl mt-4 mb-4">
+    <div class="transition text-50 text-sm text-center p-6">
         &copy; <span id="copyright-year">{currentYear}</span> {profileConfig.name}. All Rights Reserved. 
         <br>
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('rss.xml')}>RSS</a> /
@@ -56,5 +60,6 @@ try {
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a> &
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a>
         <br>
-        <a class="transition link text-50 hover:text-[var(--primary)] text-xs ml-1" target="_blank" href={`https://github.com/bilihhz/my-blog/commit/${commitHash}`}>({commitHash} @ {buildDate})</a>
+        <a class="transition link text-50 hover:text-[var(--primary)] text-xs ml-1" target="_blank" href={`https://github.com/bilihhz/my-blog/commit/${commitHash}`}>({commitHash}  {buildDate})</a>
+		
 </div>
