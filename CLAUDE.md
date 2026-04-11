@@ -15,7 +15,7 @@ https://hhz114514.qzz.io/
 你运行在windows的git bash里
 - `pnpm dev` or `pnpm start`  Start development server on localhost:4321（主用pnpm dev）
 - `pnpm new-post <filename(also title)>`  Create a new blog post with frontmatter.我告诉你的都是文章标题，文件名自己翻译成英文，就几个关键词然后用`-`连接就行。    
-- 上传代码到github仓库（已与cloudflare pages关联，上传到github后cloudflare会自动部署）`git add .`然后`git commit -t "这里随便填"`然后`git push`  
+- 上传代码到github仓库（已与cloudflare pages关联，上传到github后cloudflare会自动部署）`git add .`（不用只add某个文件，直接.）然后`git commit -t "这里随便填"`然后`git push`（不用加oringin main）  
 下面这些命令很少用到  
 - `pnpm build`  Build for production (includes Pagefind indexing)（写完代码不用build，我自己搞）
 - `pnpm preview`  Preview production build locally
