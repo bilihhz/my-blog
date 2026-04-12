@@ -37,6 +37,7 @@ export default defineConfig({
   site: "https://hhz114514.qzz.io/",
   base: "/",
   trailingSlash: "always",
+  output: "static",
 
 
 
