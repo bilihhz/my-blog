@@ -4,26 +4,36 @@
   let playerContainer;
   let ap = null;
 
-  // --- 在这里填入你想播放的单曲 ID 列表 ---
-  const songIds = ['3359827044', '3347766479', '3342981041', '3320933124', '3336080601', '3315029170', '2750034058', '2707332868', '2633225875', '2154644185', '2108548014', '2058124989', '435278010', ]; 
-  // ---------------------------------------
+  const songIds = ['3359827044', '3347766479', '3342981041', '3320933124', '3336080601', '3315029170', '2750034058', '2707332868', '2633225875', '2154644185', '2108548014', '2058124989', '435278010']; 
+
+  // 1. 最小变动：添加备用 API 列表
+  const apiSources = [
+    "http://124.220.238.163:46666/api",
+    "https://meting-api-omega.vercel.app/api",
+    "https://api.i-meto.com/meting/api",
+    "https://api.injahow.cn/meting/",
+    "https://meting.elysium-stack.cn/api"
+  ];
 
   onMount(async () => {
+    // 2. 最小变动：添加一个递归抓取函数
+    const fetchSong = async (id, index = 0) => {
+      if (index >= apiSources.length) return null;
+      try {
+        const res = await fetch(`${apiSources[index]}?server=netease&type=song&id=${id}`);
+        const data = await res.json();
+        return data[0];
+      } catch (e) {
+        return fetchSong(id, index + 1);
+      }
+    };
+
     const initPlayer = async () => {
       if (ap) ap.destroy();
-
       try {
-        // 1. 根据 ID 列表，并行请求网易云单曲数据
-        const fetchPromises = songIds.map(id => 
-          fetch(`https://meting-api-omega.vercel.app/api?server=netease&type=song&id=${id}`)
-          .then(res => res.json())
-        );
+        // 并行抓取所有歌曲，会自动尝试备用链接
+        const playlist = (await Promise.all(songIds.map(id => fetchSong(id)))).filter(i => i);
 
-        // 2. 等待所有请求完成，并将结果展平为一个数组
-        const results = await Promise.all(fetchPromises);
-        const playlist = results.map(data => data[0]); // 每个接口返回的是数组，取第一个元素
-
-        // 3. 初始化播放器
         // @ts-ignore
         ap = new window.APlayer({
           container: playerContainer,
@@ -32,10 +42,10 @@
           autoplay: false,
           order: 'list',
           listFolded: true,
-          lrcType: 3, // Meting API 默认返回 lrc 链接
+          lrcType: 3,
         });
       } catch (e) {
-        console.error("加载单曲失败:", e);
+        console.error("播放器加载失败", e);
       }
     };
 
