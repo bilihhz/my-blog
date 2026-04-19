@@ -15,7 +15,7 @@
       try {
         // 1. 根据 ID 列表，并行请求网易云单曲数据
         const fetchPromises = songIds.map(id => 
-          fetch(`https://api.i-meto.com/meting/api?server=netease&type=song&id=${id}`)
+          fetch(`https://meting-api-omega.vercel.app/api?server=netease&type=song&id=${id}`)
           .then(res => res.json())
         );
 
