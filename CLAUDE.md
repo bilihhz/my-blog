@@ -1,96 +1,94 @@
-
-这是我的fuwari blog，说中文，少废话，禁止删任何文件，要删先找我同意或者备份一份  
-
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
-This is  fuwari blog built with Astro, deployed to Cloudflare Pages. It features a clean design with smooth page transitions, expressive code blocks, and built-in SEO optimization.  
-大部分源码均位于/src文件夹  
-https://hhz114514.qzz.io/
+Fuwari 是一个基于 Astro 构建的静态博客模板，使用 Tailwind CSS 和各种现代前端技术。项目采用现代的静态站点生成器架构，支持多种功能如搜索、代码高亮、响应式设计等。
 
-## Development Commands
-你运行在windows的git bash里
-- `pnpm dev` or `pnpm start`  Start development server on localhost:4321（主用pnpm dev）
-- `pnpm new-post <filename(also title)>`  Create a new blog post with frontmatter.我告诉你的都是文章标题，文件名自己翻译成英文，就几个关键词然后用`-`连接就行。    
-- 上传代码到github仓库（已与cloudflare pages关联，上传到github后cloudflare会自动部署）`git add .`（不用只add某个文件，直接.）然后`git commit -t "这里随便填"`然后`git push`（不用加oringin main）  
-下面这些命令很少用到  
-- `pnpm build`  Build for production (includes Pagefind indexing)（写完代码不用build，我自己搞）
-- `pnpm preview`  Preview production build locally
-- `pnpm check`  Run Astro type checking
-- `pnpm type-check`  Run TypeScript type checking
-- `pnpm lint`  Run Biome linter (auto-fixes)
-- `pnpm format`  Format code with Biome
+## Development Workflow
 
+### Common Commands
 
-## Architecture
+| Command | Description |
+|---------|-------------|
+| `pnpm install` | Install project dependencies |
+| `pnpm dev` | Start local development server (runs at `localhost:4321`) |
+| `pnpm build` | Build production site to `./dist/` directory |
+| `pnpm preview` | Preview the built site locally |
+| `pnpm check` | Run checks for errors in code |
+| `pnpm format` | Format code using Biome |
+| `pnpm new-post <filename>` | Create a new blog post (creates file in `src/content/posts/`) |
 
-### Technology Stack
-- **Framework**: Astro 5 with Cloudflare Pages adapter
-- **Styling**: Tailwind CSS with custom typography plugin
-- **Components**: Svelte components with TypeScript
-- **Content**: Markdown files in `src/content/posts/` with frontmatter validation
-- **Routing**: File-based routing with trailing slash enabled
-- **SEO**: Built-in with astro-sitemap, rehype plugins for auto-linking
+### Build Process
+The build process involves:
+1. Astro builds the static site from the content
+2. Pagefind generates search index from the built site
 
-### Key Plugins & Integrations
+### Linting
+- Code is linted with Biome
+- Run with: `pnpm lint`
 
-**Markdown Processing:**
-- Remark plugins for math, reading time, GitHub admonitions, custom directives
-- Rehype plugins for KaTeX, slug generation, custom components (GitHub cards, URL cards)
-- Support for custom admonition components (note, tip, important, caution, warning)
-- Auto-generated anchor links for headings
+### Type Checking
+- TypeScript is used throughout the project
+- Run with: `pnpm type-check`
 
-**Code Display:**
-- Expressive Code with custom themes and plugins
-- Collapsible sections, line numbers, language badges
-- Custom copy buttons
-- Code highlighting with JetBrains Mono font
+## Architecture Overview
 
-**Navigation & UX:**
-- Swup for smooth page transitions
-- Table of contents support
-- Reading time calculation
-- Post series/navigation with prev/next links
+The project follows a modern static site generator architecture with the following key components:
 
-### Content Structure
-让你写新文章时可以看眼以前文章格式什么的  
-Posts are stored in `src/content/posts/` with frontmatter containing:
-- Standard fields: title, description, published date, tags, category
-- Draft status support
-- Pinned posts for featured content
-- Language support
-- Internal navigation fields (prev/next posts)
+1. **Content Layer**
+   - Blog posts are written as Astro files in `src/content/posts/`
+   - Each post has frontmatter for metadata configuration
+   - Example: `src/content/posts/your-post.astro`
 
-### Build Output
-好久没build了，都是以前的output，上传代码后cloudflare会在云端build，不用管这里
-- Production build outputs to `dist/`
-- Pagefind generates search index in `dist/pagefind/`
-- Sitemap automatically generated
-- Static assets optimized and hashed
+2. **Configuration Layer**
+   - Main site configuration: `src/config.ts`
+   - Defines site title, navigation, profile, and other settings
+   - Supports multiple languages and themes
 
-### Deployment
+3. **Integration Layer**
+   - `astro.config.mjs`: Manages plugins and integrations
+   - Includes Tailwind CSS, Expressive Code for code blocks, icons, etc.
+   - Configures markdown processing and rehype plugins
 
-Configured for Cloudflare Pages deployment via Wrangler. The `wrangler.jsonc` specifies:
-- Build output directory
-- Compatibility date
-- Pages configuration
+4. **Frontend Layer**
+   - Astro components render the blog pages
+   - Uses Svelte components where needed
+   - Responsive design with Tailwind CSS classes
 
-### Notable Features
+5. **Deployment Layer**
+   - Built site is deployed to platforms like Vercel, Netlify, etc.
+   - Search functionality is handled by Pagefind
 
-- Custom plugin system for markdown processing
-- Email protection for contact links
-- Image width processing
-- GitHub and URL card components
-- Responsive design with mobile-first approach
-- Dark mode support (via CSS variables)
+## Key Files
 
-### Customization Points
+- `src/config.ts`: Main configuration file
+- `astro.config.mjs`: Integration and plugin configuration
+- `src/content/posts/`: All blog post content
+- `package.json`: Project dependencies and scripts
 
-- 主配置文件src/config.ts
-- Theme colors defined in CSS variables
-- Code block styling in expressiveCode configuration
-- Component overrides in astro.config.mjs
-- Frontmatter schema validation in `src/content/config.ts`
+## Code Structure
+
+```
+.
+├── src/
+│   ├── config.ts          # Site configuration
+│   ├── content/
+│   │   └── posts/         # Blog posts (Astro files)
+│   ├── plugins/           # Custom plugins for markdown and rehype
+│   └── pages/             # Page components
+├── .pnpm/                 # Dependency cache
+├── package.json
+├── astro.config.mjs
+└── README.md
+```
+
+## Customization
+
+To customize the blog:
+1. Modify `src/config.ts` for site settings
+2. Add or edit blog posts in `src/content/posts/`
+3. Update plugins or styles in `astro.config.mjs`
+
+The project uses modern development practices with TypeScript and follows a clean separation of concerns between content, configuration, and presentation layers.

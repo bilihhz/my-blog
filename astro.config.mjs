@@ -37,8 +37,13 @@ export default defineConfig({
   site: "https://hhz114514.qzz.io/",
   base: "/",
   trailingSlash: "always",
-  output: "static",
-
+  redirects: {
+		"/zl": {
+			status: 302,
+			destination: `https://zl.hhz114514.qzz.io/`,
+		},
+        
+    },
 
 
 
