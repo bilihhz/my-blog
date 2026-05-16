@@ -22,7 +22,7 @@ const songIds = [
 
 // 1. 最小变动：添加备用 API 列表
 const apiSources = [
-	"http://124.220.238.163:46666/api",
+	"http://47.100.237.95:55777/api",
 	"https://meting-api-omega.vercel.app/api",
 	"https://api.i-meto.com/meting/api",
 	"https://api.injahow.cn/meting/",

@@ -1,10 +1,10 @@
 {
   "name": "hhz-blog",
-  "main": "dist/server/entry.mjs",
+  "main": "dist/_worker.js/index.js",
   "compatibility_date": "2026-02-04",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "binding": "ASSETS",
-    "directory": "dist/client"
+    "directory": "dist"
   }
 }

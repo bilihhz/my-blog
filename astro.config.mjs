@@ -195,5 +195,5 @@ export default defineConfig({
       },
 	},
 
-  adapter: cloudflare({ mode: "directory" }),
+  adapter: cloudflare(),
 });
