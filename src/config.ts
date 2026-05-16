@@ -1,5 +1,5 @@
-import { i18n } from './i18n/translation';
-import I18nKey from './i18n/i18nKey'
+import I18nKey from "./i18n/i18nKey";
+import { i18n } from "./i18n/translation";
 import type {
 	ExpressiveCodeConfig,
 	LicenseConfig,
@@ -42,13 +42,12 @@ export const siteConfig: SiteConfig = {
 	},
 	favicon: [
 		// Leave this array empty to use the default favicon
-		 {
-		   src: 'favicon/web.ico',    // Path of the favicon, relative to the /public directory
-		//   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
-		//   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
-		 }
+		{
+			src: "favicon/web.ico", // Path of the favicon, relative to the /public directory
+			//   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
+			//   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
+		},
 	],
-	
 };
 
 export const navBarConfig: NavBarConfig = {
@@ -57,21 +56,18 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 
+		{
+			name: I18nKey.api, // 使用你刚才定义的 Key
+			url: "/api/", // 对应 src/pages/api.astro
+			external: false,
+		},
 
 		{
-      			name: (I18nKey.api), // 使用你刚才定义的 Key
-     			url: '/api/',      // 对应 src/pages/api.astro
-      			external: false,
-   		 },
+			name: I18nKey.friend, // 使用你刚才定义的 Key
+			url: "/friend/", // 对应 src/pages/friend.astro
+			external: false,
+		},
 
-		 {
-      			name: (I18nKey.friend), // 使用你刚才定义的 Key
-     			url: '/friend/',      // 对应 src/pages/friend.astro
-      			external: false,
-   		 },
-		 
-
-		
 		/*{
 			name: "指令",
 			url: "https://zl.hhz114514.qzz.io/", // Internal links should not include the base path, as it is automatically added
@@ -98,7 +94,6 @@ export const navBarConfig: NavBarConfig = {
 			external: true, // Show an external link icon and will open in a new tab
 		},
 		*/
-		
 	],
 };
 
@@ -108,20 +103,20 @@ export const profileConfig: ProfileConfig = {
 	bio: "我也不知道这里该写什么  哈加！",
 	links: [
 		{
-      		name: 'Email',
-      		icon: 'fa6-solid:envelope',
-      		url: 'hello@hhz114514.qzz.io',
-    	},
+			name: "Email",
+			icon: "fa6-solid:envelope",
+			url: "hello@hhz114514.qzz.io",
+		},
 		{
-      		name: 'bilibili',
-      		icon: 'fa6-brands:bilibili',
-      		url: 'https://space.bilibili.com/1202526655',
-    	},
+			name: "bilibili",
+			icon: "fa6-brands:bilibili",
+			url: "https://space.bilibili.com/1202526655",
+		},
 		{
-      		name: 'GitHub',
-      		icon: 'fa6-brands:github',
-      		url: 'https://github.com/bilihhz',
-    	},
+			name: "GitHub",
+			icon: "fa6-brands:github",
+			url: "https://github.com/bilihhz",
+		},
 	],
 };
 

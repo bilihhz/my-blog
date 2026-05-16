@@ -1,41 +1,93 @@
 # AGENTS.md
 
 ## Project
-Personalized [Fuwari](https://github.com/saicaca/fuwari) Astro blog fork. 
+
+Fuwari-based static blog (Astro 6 + Svelte 5 + Tailwind CSS 3). Deployed to Cloudflare Pages and GitHub Pages.
+Site: `https://hhz114514.qzz.io/`
+
+## Package manager
+
+**pnpm only.** The `preinstall` script enforces this with `npx only-allow pnpm`. Do not use npm/yarn.
 
 ## Commands
-- `pnpm dev` - dev server at localhost:4321
-- `pnpm build` - runs `astro build && pagefind --site dist` (both steps required)
-- `pnpm check` - `pnpm astro check`
-- `pnpm type-check` - `tsc --noEmit --isolatedDeclarations`
-- `pnpm lint` - Biome lint + fix on `./src`
-- `pnpm format` - Biome format + write on `./src`
-- `pnpm new-post ` - scaffold post in `src/content/posts/` (auto-adds `.md`, supports subdirectories)
 
-## Order matters
-CI (`build.yml`): `pnpm astro check` → `pnpm astro build`
+| Command | Action |
+|---|---|
+| `pnpm install` | Install deps |
+| `pnpm dev` | Dev server at `localhost:4321` use this more|
+| `pnpm new-post <filename>` | Create new post in `src/content/posts/` |
+| `pnpm build` | Build to `./dist/` (runs `astro build && pagefind --site dist`) don't use this,cloudlfare will build on cloud|
+| `pnpm preview` | Preview built site locally |
+| `pnpm check` | Astro type check (`astro check`) |
+| `pnpm type-check` | Raw TypeScript check (`tsc --noEmit --isolatedDeclarations`) |
+| `pnpm lint` | Biome lint + auto-fix (`biome check --write ./src`) |
+| `pnpm format` | Biome format (`biome format --write ./src`) |
+| `pnpm astro ...` | Pass-through to Astro CLI |
 
-## Linting/Formatting
-Biome only (not ESLint/Prettier). Indent: tabs. Code files (`.astro`, `.svelte`) have relaxed rules (no `useConst`/`useImportType` warnings, no `noUnusedVariables`/`noUnusedImports`).
+**Build quirk:** `pnpm build` runs Pagefind as a post-build step. If you modify `pnpm build`, keep `pagefind --site dist` at the end or search will break.
 
-## Build & Deploy
-- Adapter: `@astrojs/cloudflare` (configured for Cloudflare Pages)
-- Deploy CI: uses `withastro/action` (GitHub Pages), ignores local adapter in CI
-- `dist/` is build output; `pagefind` index lives there post-build
-- `sharp` is a required runtime dependency (not dev-only)
+**Verification order:** `pnpm lint` -> `pnpm check` (or `pnpm type-check`). CI runs Biome and Astro check as separate workflows.
 
-## Plugins
-Custom MD processing in `src/plugins/`: admonitions, GitHub cards, URL cards, reading time, excerpt, image width, KaTeX, email protection, etc. These are wired in `astro.config.mjs`.
+## Architecture
 
-## Config
-- `src/config.ts` - site title, navbar, profile, theme, license
-- `astro.config.mjs` - Astro + integrations config
-- `biome.json` - lint/format rules
+- **Content:** `src/content/posts/*.md` (or `.mdx`). Schema defined in `src/content.config.ts`. Frontmatter fields: `title`, `published`, `description`, `image`, `tags`, `category`, `draft`, `lang`, `pinned`.
+- **Config:** `src/config.ts` — site title, nav links, profile, license, theme hue, banner, background, TOC, favicon.
+- **Pages:** `src/pages/` — Astro page components.
+- **Components:** `src/components/` — Astro + Svelte (`.svelte`) components.
+- **Plugins:** `src/plugins/` — custom rehype/remark plugins (figures, email protection, admonitions, GitHub cards, URL cards, image width, excerpt, reading time).
+- **i18n:** `src/i18n/` — translation system. Site language is `zh_CN` in config.
+- **Styles:** `src/styles/` — global CSS, Tailwind config in `tailwind.config.cjs`.
 
-## Post Frontmatter
-```yaml
-title, published, description, image, tags, category, draft, lang
+## Path aliases
+
+```
+@/*        -> src/*
+@components/* -> src/components/*
+@assets/*     -> src/assets/*
+@constants/*  -> src/constants/*
+@utils/*      -> src/utils/*
+@i18n/*       -> src/i18n/*
+@layouts/*    -> src/layouts/*
 ```
 
-## Requirements
-- Node.js 22-23, pnpm 10 (enforced by preinstall hook)
+## Code style
+
+- **Formatter:** Biome, tabs for indentation, double quotes for JS/TS.
+- **Svelte/Astro files:** `useConst` and `useImportType` rules are disabled (Biome override).
+- CSS files in `src/**/*.css` are excluded from Biome.
+
+## Deployment
+
+- **Cloudflare Pages:** Primary deploy target. Uses `@astrojs/cloudflare` adapter. Wrangler config in `wrangler.jsonc` (project name: `hhz-blog`).
+- **GitHub Pages:** Secondary deploy via `.github/workflows/deloy.yml` (typo in filename is intentional).
+- **Vercel:** `vercel.json` is empty — not actively used.
+
+## CI
+
+- `build.yml` — Astro check + build on Node 22/23, push/PR to `main`.
+- `biome.yml` — Biome CI on `./src`, push/PR to `main`.
+- `deloy.yml` — Deploy to GitHub Pages on push to `main`.
+
+## Content frontmatter schema
+
+```yaml
+title: string (required)
+published: date (required)
+updated: date (optional)
+draft: boolean (default: false)
+description: string (default: "")
+image: string (default: "")
+tags: string[] (default: [])
+category: string | null (default: "")
+lang: string (default: "") — set only if different from site lang
+pinned: boolean (default: false)
+```
+
+## Markdown extensions
+
+- Admonitions: `:::note`, `:::tip`, `:::important`, `:::caution`, `:::warning`
+- GitHub repo cards: `::github[owner/repo]`
+- URL cards: `::url[title](link)`
+- KaTeX math support
+- Expressive Code for code blocks (collapsible sections, line numbers, custom copy button)
+- Custom image width syntax

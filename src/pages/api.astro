@@ -7,7 +7,7 @@ import MainGridLayout from "../layouts/MainGridLayout.astro";
 const post = await getEntry("spec", "bingapi");
 
 if (!post) {
-    throw new Error("Content not found in src/content/spec/bingapi.md");
+	throw new Error("Content not found in src/content/spec/bingapi.md");
 }
 
 const { Content } = await render(post);

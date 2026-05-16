@@ -1,62 +1,80 @@
 <script>
-  import { onMount } from 'svelte';
+import { onMount } from "svelte";
 
-  let playerContainer;
-  let ap = null;
+let playerContainer;
+let ap = null;
 
-  const songIds = ['3359827044', '3347766479', '3342981041', '3320933124', '3336080601', '3315029170', '2750034058', '2707332868', '2633225875', '2154644185', '2108548014', '2058124989', '435278010']; 
+const songIds = [
+	"3359827044",
+	"3347766479",
+	"3342981041",
+	"3320933124",
+	"3336080601",
+	"3315029170",
+	"2750034058",
+	"2707332868",
+	"2633225875",
+	"2154644185",
+	"2108548014",
+	"2058124989",
+	"435278010",
+];
 
-  // 1. 最小变动：添加备用 API 列表
-  const apiSources = [
-    "http://124.220.238.163:46666/api",
-    "https://meting-api-omega.vercel.app/api",
-    "https://api.i-meto.com/meting/api",
-    "https://api.injahow.cn/meting/",
-    "https://meting.elysium-stack.cn/api"
-  ];
+// 1. 最小变动：添加备用 API 列表
+const apiSources = [
+	"http://124.220.238.163:46666/api",
+	"https://meting-api-omega.vercel.app/api",
+	"https://api.i-meto.com/meting/api",
+	"https://api.injahow.cn/meting/",
+	"https://meting.elysium-stack.cn/api",
+];
 
-  onMount(async () => {
-    // 2. 最小变动：添加一个递归抓取函数
-    const fetchSong = async (id, index = 0) => {
-      if (index >= apiSources.length) return null;
-      try {
-        const res = await fetch(`${apiSources[index]}?server=netease&type=song&id=${id}`);
-        const data = await res.json();
-        return data[0];
-      } catch (e) {
-        return fetchSong(id, index + 1);
-      }
-    };
+onMount(async () => {
+	// 2. 最小变动：添加一个递归抓取函数
+	const fetchSong = async (id, index = 0) => {
+		if (index >= apiSources.length) return null;
+		try {
+			const res = await fetch(
+				`${apiSources[index]}?server=netease&type=song&id=${id}`,
+			);
+			const data = await res.json();
+			return data[0];
+		} catch (e) {
+			return fetchSong(id, index + 1);
+		}
+	};
 
-    const initPlayer = async () => {
-      if (ap) ap.destroy();
-      try {
-        // 并行抓取所有歌曲，会自动尝试备用链接
-        const playlist = (await Promise.all(songIds.map(id => fetchSong(id)))).filter(i => i);
+	const initPlayer = async () => {
+		if (ap) ap.destroy();
+		try {
+			// 并行抓取所有歌曲，会自动尝试备用链接
+			const playlist = (
+				await Promise.all(songIds.map((id) => fetchSong(id)))
+			).filter((i) => i);
 
-        // @ts-ignore
-        ap = new window.APlayer({
-          container: playerContainer,
-          audio: playlist,
-          fixed: false,
-          autoplay: false,
-          order: 'list',
-          listFolded: true,
-          lrcType: 3,
-        });
-      } catch (e) {
-        console.error("播放器加载失败", e);
-      }
-    };
+			// @ts-expect-error
+			ap = new window.APlayer({
+				container: playerContainer,
+				audio: playlist,
+				fixed: false,
+				autoplay: false,
+				order: "list",
+				listFolded: true,
+				lrcType: 3,
+			});
+		} catch (e) {
+			console.error("播放器加载失败", e);
+		}
+	};
 
-    document.addEventListener('astro:after-swap', initPlayer);
-    initPlayer();
+	document.addEventListener("astro:after-swap", initPlayer);
+	initPlayer();
 
-    return () => {
-      document.removeEventListener('astro:after-swap', initPlayer);
-      if (ap) ap.destroy();
-    };
-  });
+	return () => {
+		document.removeEventListener("astro:after-swap", initPlayer);
+		if (ap) ap.destroy();
+	};
+});
 </script>
 
 <div class="aplayer-wrapper">

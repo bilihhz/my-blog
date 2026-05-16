@@ -1,67 +1,62 @@
 ---
-import MainGridLayout from "../layouts/MainGridLayout.astro";
 import Markdown from "@components/misc/Markdown.astro";
+import Giscus from "../components/misc/giscus.astro";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
-
-import Giscus from "../components/misc/giscus.astro";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
 
 // 将所有链接分类存放在一个对象里
 const sections = [
-    {
-        title: "其他网站",
-        content: [
-            
-            {
-                name: "指令",
-                desc: "指令生成器",
-                url: "https://zl.hhz114514.qzz.io",
-                avatar: "https://zl.hhz114514.qzz.io/instruction.png"
-            },
+	{
+		title: "其他网站",
+		content: [
+			{
+				name: "指令",
+				desc: "指令生成器",
+				url: "https://zl.hhz114514.qzz.io",
+				avatar: "https://zl.hhz114514.qzz.io/instruction.png",
+			},
 
-            {
-                name: "本站统计",
-                desc: "Umami",
-                url: "https://cloud.umami.is/share/zwNENJkXsBNXmIuP",
-                avatar: "/favicon/web.ico"
-            },
+			{
+				name: "本站统计",
+				desc: "Umami",
+				url: "https://cloud.umami.is/share/zwNENJkXsBNXmIuP",
+				avatar: "/favicon/web.ico",
+			},
 
-            {
-                name: "指令统计",
-                desc: "Umami",
-                url :"https://cloud.umami.is/share/jXxNnr88jOOVmHGl/",
-                avatar: "/favicon/web.ico"
-            },
+			{
+				name: "指令统计",
+				desc: "Umami",
+				url: "https://cloud.umami.is/share/jXxNnr88jOOVmHGl/",
+				avatar: "/favicon/web.ico",
+			},
 
-            {
-                name: "监控1",
-                desc: "uptimeflare",
-                url: "https://uptime.hhz114514.qzz.io/",
-                avatar: "https://uptime.hhz114514.qzz.io/favicon.png"
-            },
+			{
+				name: "监控1",
+				desc: "uptimeflare",
+				url: "https://uptime.hhz114514.qzz.io/",
+				avatar: "https://uptime.hhz114514.qzz.io/favicon.png",
+			},
 
-            {
-                name: "监控2",
-                desc: "uptimerobot",
-                url: "https://stats.uptimerobot.com/Vvl3i7j1N2",
-                avatar: "https://stats.uptimerobot.com/assets/favicon.ico"
-            }
-        ]
-    },
-    {
-        title: "友情链接",
-        content: [
-            
-            {
-                name: "还没有",
-                desc: "",
-                url: "",
-                avatar: "/favicon/web.ico"
-            }
-
-
-        ]
-    }
+			{
+				name: "监控2",
+				desc: "uptimerobot",
+				url: "https://stats.uptimerobot.com/Vvl3i7j1N2",
+				avatar: "https://stats.uptimerobot.com/assets/favicon.ico",
+			},
+		],
+	},
+	{
+		title: "友情链接",
+		content: [
+			{
+				name: "还没有",
+				desc: "",
+				url: "",
+				avatar: "/favicon/web.ico",
+			},
+		],
+	},
 ];
 
 const title = i18n(I18nKey.friend);
