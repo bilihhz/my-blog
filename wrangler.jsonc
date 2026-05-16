@@ -1,5 +1,10 @@
 {
   "name": "hhz-blog",
-  "compatibility_date": "2026-02-04", // 更新为你部署当天的日期
-  "pages_build_output_dir": "./dist"
+  "main": "dist/server/entry.mjs",
+  "compatibility_date": "2026-02-04",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "dist/client"
+  }
 }
