@@ -5,48 +5,14 @@ import { url } from "../utils/url-utils";
 
 //copy 2x.nz
 
-import { execSync } from "node:child_process";
-
 const currentYear = new Date().getFullYear();
 
-let commitHash = "unknown";
-let buildDate = "unknown";
-
-try {
-	commitHash = execSync("git rev-parse --short=7 HEAD").toString().trim();
-
-	const date = new Date();
-	const parts = new Intl.DateTimeFormat("zh-CN", {
-		timeZone: "Asia/Shanghai",
-		year: "numeric",
-		month: "2-digit",
-		day: "2-digit",
-		hour: "2-digit",
-		minute: "2-digit",
-		second: "2-digit",
-		hour12: false,
-	}).formatToParts(date);
-	const year = parts.find((p) => p.type === "year")?.value ?? "0000";
-	const month = parts.find((p) => p.type === "month")?.value ?? "00";
-	const day = parts.find((p) => p.type === "day")?.value ?? "00";
-	const hours = parts.find((p) => p.type === "hour")?.value ?? "00";
-	const minutes = parts.find((p) => p.type === "minute")?.value ?? "00";
-	const seconds = parts.find((p) => p.type === "second")?.value ?? "00";
-	buildDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-} catch (e) {
-	console.warn("Failed to get git info", e);
-}
+// 由 astro.config.mjs 在构建期通过 vite define 注入（workerd 运行时无法调用 node:child_process）
+let commitHash = typeof __GIT_COMMIT__ !== "undefined" ? __GIT_COMMIT__ : "unknown";
+let buildDate = typeof __GIT_BUILD_DATE__ !== "undefined" ? __GIT_BUILD_DATE__ : "unknown";
 
 //
 ---
-
-<!--<div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">-->
-<!-- <div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">
-<div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32">
-<!--<div class="transition bg-[oklch(92%_0.01_var(&#45;&#45;hue))] dark:bg-black rounded-2xl py-8 mt-4 mb-8 flex flex-col items-center justify-center px-6">-->
-<!-- <div class="transition bg-[var(--card-bg)] dark:bg-[var(--card-bg)] rounded-2xl py-8 mt-4 mb-8 flex flex-col items-center justify-center px-6">
-<div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6">-->
-
 
 <div class="transition border-t border-white/15 my-10 border-dashed mx-4 md:mx-32"></div>
 <div class="card-base w-fit mx-auto rounded-xl mt-4 mb-4">
@@ -60,5 +26,6 @@ try {
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a>
         <br>
         <a class="transition link text-50 hover:text-[var(--primary)] text-xs ml-1" target="_blank" href={`https://github.com/bilihhz/my-blog/commit/${commitHash}`}>({commitHash}  {buildDate})</a>
-		
+
+    </div>
 </div>

@@ -1,6 +1,7 @@
+import { execSync } from "node:child_process";
+import { unified } from "@astrojs/markdown-remark";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import tailwind from "@astrojs/tailwind";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import swup from "@swup/astro";
@@ -30,13 +31,53 @@ import remarkImageWidth from './src/plugins/remark-image-width.js'
 import rehypeEmailProtection from "./src/plugins/rehype-email-protection.mjs";
 import { UrlCardComponent } from "./src/plugins/rehype-component-url-card.mjs";
 
+// workerd 环境不支持 CommonJS（如 module.exports），会在 dev 服务器里触发 "module is not defined"。
+// 参考 Cloudflare 适配器文档：用 configEnvironment 把相关依赖预编译进 optimizeDeps.include。
+function optimizeDepsForServer() {
+	return {
+		name: "optimize-astro-icon-deps",
+		configEnvironment(name) {
+			if (name !== "client") {
+				return {
+					optimizeDeps: {
+						include: ["astro-icon/components", "@iconify/utils"],
+					},
+				};
+			}
+		},
+	};
+}
 
+// 在 Node 环境（构建期）计算 git 信息，再通过 vite define 注入，
+// 因为新 Cloudflare 适配器在 workerd 里预渲染，运行时无法调用 node:child_process
+const gitInfo = (() => {
+	try {
+		const commitHash = execSync("git rev-parse --short=7 HEAD").toString().trim();
+		const date = new Date();
+		const parts = new Intl.DateTimeFormat("zh-CN", {
+			timeZone: "Asia/Shanghai",
+			year: "numeric",
+			month: "2-digit",
+			day: "2-digit",
+			hour: "2-digit",
+			minute: "2-digit",
+			second: "2-digit",
+			hour12: false,
+		}).formatToParts(date);
+		const get = (type) => parts.find((p) => p.type === type)?.value ?? "00";
+		const buildDate = `${get("year")}-${get("month")}-${get("day")} ${get("hour")}:${get("minute")}:${get("second")}`;
+		return { commitHash, buildDate };
+	} catch {
+		return { commitHash: "unknown", buildDate: "unknown" };
+	}
+})();
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://hhz114514.qzz.io/",
   base: "/",
   trailingSlash: "always",
+  compressHTML: true, // 保留 v6 的 HTML 感知空白压缩行为（v7 默认改为 'jsx'）
   redirects: {
 		"/zl": {
 			status: 302,
@@ -49,9 +90,6 @@ export default defineConfig({
 
 
   integrations: [
-      tailwind({
-          nesting: true,
-      }),
       swup({
           theme: false,
           animationClass: "transition-swup-", // see https://swup.js.org/options/#animationselector
@@ -68,7 +106,6 @@ export default defineConfig({
       }),
       icon({
           include: {
-              "preprocess: vitePreprocess(),": ["*"],
               "fa6-brands": ["*"],
               "fa6-regular": ["*"],
               "fa6-solid": ["*"],
@@ -123,21 +160,23 @@ export default defineConfig({
 	],
 
   markdown: {
-      remarkPlugins: [
-          remarkMath,
-          remarkReadingTime,
-          remarkExcerpt,
-          remarkGithubAdmonitionsToDirectives,
-          remarkDirective,
-          remarkSectionize,
-          parseDirectiveNode,
-          remarkImageWidth,
-      ],
-      rehypePlugins: [
-          rehypeKatex,
-          rehypeSlug,
-          rehypeFigure,
-          [rehypeEmailProtection, { method: "base64" }], // 邮箱保护插件，支持 'base64' 或 'rot13'
+      processor: unified({
+          // v7 默认是 Sätteri（不执行 remark/rehype 插件），本项目依赖这些插件，故保留 unified 管道并在此传入插件
+          remarkPlugins: [
+              remarkMath,
+              remarkReadingTime,
+              remarkExcerpt,
+              remarkGithubAdmonitionsToDirectives,
+              remarkDirective,
+              remarkSectionize,
+              parseDirectiveNode,
+              remarkImageWidth,
+          ],
+          rehypePlugins: [
+              rehypeKatex,
+              rehypeSlug,
+              rehypeFigure,
+              [rehypeEmailProtection, { method: "base64" }], // 邮箱保护插件，支持 'base64' 或 'rot13'
           [
               rehypeComponents,
               {
@@ -175,10 +214,15 @@ export default defineConfig({
                   },
               },
           ],
-      ],
+          ]}),
 	},
 
   vite: {
+      plugins: [optimizeDepsForServer()],
+      define: {
+          __GIT_COMMIT__: JSON.stringify(gitInfo.commitHash),
+          __GIT_BUILD_DATE__: JSON.stringify(gitInfo.buildDate),
+      },
       build: {
           rollupOptions: {
               onwarn(warning, warn) {

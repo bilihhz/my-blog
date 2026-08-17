@@ -6,6 +6,8 @@ export const ja: Translation = {
 	[Key.about]: "About",
 	[Key.archive]: "Archive",
 	[Key.search]: "検索",
+	[Key.api]: "API",
+	[Key.friend]: "他のサイト&友達リンク",
 
 	[Key.tags]: "タグ",
 	[Key.categories]: "カテゴリ",

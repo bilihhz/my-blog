@@ -8,6 +8,8 @@ category: '教程'
 draft: false 
 lang: ''
 ---
+## 2026/8/15
+此文章内容可能已经过时  
 
 ## 准备事项
 1.[git](https://git-scm.com)  
