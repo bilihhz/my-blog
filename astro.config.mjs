@@ -239,5 +239,9 @@ export default defineConfig({
       },
 	},
 
-  adapter: cloudflare(),
+  adapter: cloudflare({
+      // 默认图片服务是 cloudflare-binding（运行时 _image/ 端点 + Cloudflare Images），
+      // 静态站没有配置 IMAGES binding 会导致图片 404。改用 compile 在构建时用 sharp 处理。
+      imageService: "compile",
+  }),
 });

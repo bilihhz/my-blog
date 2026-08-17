@@ -79,7 +79,8 @@
       "Bash(curl -s --max-time 60 \"http://localhost:4391/posts/%E5%85%AC%E5%91%8A/\" -o /tmp/gonggao.html -w \"HTTP %{http_code}\\\\n\")",
       "Bash(echo \"type-check exit: $?\")",
       "Bash(echo \"astro check exit: $?\")",
-      "Bash(echo \"build exit: $?\")"
+      "Bash(echo \"build exit: $?\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('assets:', d.get\\('assets'\\)\\); print\\('compat_date:', d.get\\('compatibility_date'\\)\\); print\\('flags:', d.get\\('compatibility_flags'\\)\\); print\\('images binding:', d.get\\('images'\\)\\)\")"
     ]
   }
 }
